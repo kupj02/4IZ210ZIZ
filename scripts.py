@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
+
 df = pd.read_csv('healthcare-dataset-stroke-data.csv')
 fig, axs = plt.subplots(2, 3)
 axs[0, 0].hist(df.stroke)
