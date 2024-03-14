@@ -40,4 +40,5 @@ c6 = Counter(zip(df.heart_disease,df.stroke))
 s6 = [5*c6[(x1,y1)] for x1,y1 in zip(df.heart_disease,df.stroke)]
 axs[2, 3].scatter(df.heart_disease,df.stroke, s=s6)
 axs[2, 3].set_title('scatterplot hladiny glukózy a infarktů')
+
 plt.show()
