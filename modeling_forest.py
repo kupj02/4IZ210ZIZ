@@ -11,20 +11,9 @@ from scipy.stats import randint
 from sklearn.tree import export_graphviz
 from IPython.display import Image
 import graphviz
-df = pd.read_csv('healthcare-dataset-stroke-data.csv')
-df = df[df['smoking_status'] != 'Unknown']
-df = df.dropna(subset=['bmi'])  # Vyhod radky s chybejicimi hodnotami BMI
-df['gender']=pd.factorize(df['gender'])[0].astype(float)
-df['ever_married']=pd.factorize(df['ever_married'])[0].astype(float)
-df['work_type']=pd.factorize(df['work_type'])[0].astype(float)
-df['Residence_type']=pd.factorize(df['Residence_type'])[0].astype(float)
-df['smoking_status']=pd.factorize(df['smoking_status'])[0].astype(float)
-# Rozdel dataset do trenovaciho a testovaciho
-train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
 
-X=df.drop('stroke', axis=1)
-y=df['stroke']
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2, random_state=42)
+from preprocessing import X_train, y_train, X_test, y_test
+
 rf = RandomForestClassifier()
 rf.fit(X_train,y_train)
 y_pred = rf.predict(X_test)
