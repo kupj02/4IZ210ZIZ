@@ -21,7 +21,7 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 
 
-for i in range(10):
+for i in range(3):
     tree = rf.estimators_[i]
     dot_data = export_graphviz(tree,
                                feature_names=X_train.columns,
