@@ -12,9 +12,9 @@ from sklearn.tree import export_graphviz
 from IPython.display import Image
 import graphviz
 
-from preprocessing import X_train, y_train, X_test, y_test
+from new_preprocessing import X_train, y_train, X_test, y_test
 
-rf = RandomForestClassifier()
+rf = RandomForestClassifier(random_state=42)
 rf.fit(X_train,y_train)
 y_pred = rf.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
