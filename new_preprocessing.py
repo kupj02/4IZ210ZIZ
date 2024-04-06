@@ -26,6 +26,7 @@ target_variable = "stroke"
 
 X, y = df.loc[:, df.columns != target_variable], df[target_variable]
 X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.2, random_state=42)
+train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
 
 X_train.head()
 X_test.head()

@@ -20,7 +20,6 @@ y_pred = rf.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 
-
 for i in range(3):
     tree = rf.estimators_[i]
     dot_data = export_graphviz(tree,
@@ -33,6 +32,7 @@ for i in range(3):
     display(graph)
 param_dist = {'n_estimators': randint(50,500),
               'max_depth': randint(1,20)}
+
 
 # Create a random forest classifier
 rf = RandomForestClassifier()
