@@ -1,6 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix
-
 from new_preprocessing import y_test, X_train, y_train, X_test
 
 clf_rf =RandomForestClassifier()
