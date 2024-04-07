@@ -27,16 +27,3 @@ dot_data = export_graphviz(clf,
 graph: Source = graphviz.Source(dot_data)
 display(graph)
 
-rt = RandomTreeClassifier()
-rand_search = RandomizedSearchCV(rt,
-                                 param_distributions = param_dist,
-                                 n_iter=5,
-                                 cv=5)
-
-# Fit the random search object to the data
-rand_search.fit(X_train, y_train)
-# Create a variable for the best model
-best_rf = rand_search.best_estimator_
-
-# Print the best hyperparameters
-print('Best hyperparameters:',  rand_search.best_params_)
