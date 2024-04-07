@@ -1,9 +1,9 @@
 import new_preprocessing
 from sklearn.cluster import KMeans
 from yellowbrick.cluster import KElbowVisualizer
+cluster_df = new_preprocessing.df[new_preprocessing.df['bmi'] >= 25]
 df_train = new_preprocessing.df.drop(columns=["stroke"])
 df_test = new_preprocessing.df[["stroke"]]
-
 kmeans2 = KMeans(n_clusters=2, random_state=42, n_init=10)
 kmeans2.fit(df_train)
 
