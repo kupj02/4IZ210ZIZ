@@ -1,30 +1,18 @@
-from scipy.cluster.hierarchy import dendrogram
-import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
-from hierarchical_clustering import hierarchical_clustering
+from clustering import df_train
+from clustering_with_optimal_numbers import kmeansBestInertia
 
-
-def plot_dendrogram(model, **kwargs):
-    # Create linkage matrix and then plot the dendrogram
-    # create the counts of samples under each node
-    counts = np.zeros(model.children_.shape[0])
-    n_samples = len(model.labels_)
-    for i, merge in enumerate(model.children_):
-        current_count = 0
-        for child_idx in merge:
-            if child_idx < n_samples:
-                current_count += 1  # leaf node
-            else:
-                current_count += counts[child_idx - n_samples]
-        counts[i] = current_count
-    linkage_matrix = np.column_stack(
-        [model.children_, model.distances_, counts]
-    ).astype(float)
-    # Plot the corresponding dendrogram
-    dendrogram(linkage_matrix, **kwargs)
-
-fig = plt.figure(figsize=(10,10))
-plt.ylabel("Number of points in node or number of instances when in parentheses")
-# note that with p=? we set the maximum number of levels
-plt.show()
+def plot_clusters(data, clusters):
+    for cluster_num in range(clusters.n_clusters):
+        cluster_mask = (clusters.labels_ == cluster_num)
+        cluster_data = data[cluster_mask]
+        plt.scatter(cluster_data[:, 0], cluster_data[:, 1], label=f"Cluster {cluster_num}")
+    plt.xlabel("PCA Component 1")
+    plt.ylabel("PCA Component 2")
+    plt.title("K-Means Clusters (PCA-reduced data)")
+    plt.legend()
+    plt.show()
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2, random_state=42)
+plot_clusters(pca.fit_transform(df_train), kmeansBestInertia)
