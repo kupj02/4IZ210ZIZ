@@ -1,7 +1,8 @@
 from matplotlib import pyplot as plt
-
+from sklearn.decomposition import PCA
 from clustering import df_train
 from clustering_with_optimal_numbers import kmeansBestInertia
+
 
 def plot_clusters(data, clusters):
     for cluster_num in range(clusters.n_clusters):
@@ -13,6 +14,7 @@ def plot_clusters(data, clusters):
     plt.title("K-Means Clusters (PCA-reduced data)")
     plt.legend()
     plt.show()
-from sklearn.decomposition import PCA
+
+
 pca = PCA(n_components=2, random_state=42)
 plot_clusters(pca.fit_transform(df_train), kmeansBestInertia)

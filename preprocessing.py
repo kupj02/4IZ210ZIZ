@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from collections import Counter
 
-# Nacti dataset a vyhod z dat u koureni hodnoty Unkown | target atribute je stroke, ktery je binarni, tudiz netreba upravovat
+# Nacti dataset a vyhod z dat u koureni hodnoty Unkown | target atribute je stroke, ktery je binarni, tudiz netreba
+# upravovat
 df = pd.read_csv('healthcare-dataset-stroke-data.csv')
 df = df[df['smoking_status'] != 'Unknown']
 df = df.dropna(subset=['bmi'])  # Vyhod radky s chybejicimi hodnotami BMI
